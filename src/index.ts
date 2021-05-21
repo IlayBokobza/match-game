@@ -1,7 +1,8 @@
 import {checkNeighbors,resetNeighbors} from './checkNeighbors'
 import createBoard from './createBoard'
+import dropBoxes from './dropBoxes'
 
-const board = createBoard()
+let board = createBoard()
 
 const renderBoard = () => {
     document.getElementsByTagName('body')[0].innerHTML = ''
@@ -13,7 +14,14 @@ const renderBoard = () => {
     const rows = document.querySelectorAll('.row')
     board.forEach((arr,index) => {
         arr.forEach(item => {
-            rows[index].innerHTML += `<div class="box" id="${item.cords}" style="background:${item.color};"></div>`
+            let element = `<div class="box" id="${item.cords}" style="background:${item.color};`
+
+            if(item.color !== 'none'){
+                element += 'cursor: pointer;'
+            }
+
+            element += '"></div>'
+            rows[index].innerHTML += element
         })
     })
     
@@ -24,11 +32,15 @@ const renderBoard = () => {
             const x = parseInt(splitId[1])
 
             const thisBox = board[y][x]
+
+            //stop func if box is deleted
+            if(thisBox.color === 'none'){
+                return
+            }
             
             //checks neighbors
-            let neighbors = checkNeighbors(board,thisBox)
+            const patch = checkNeighbors(board,thisBox)
             resetNeighbors()
-            const patch = [thisBox,...neighbors]
 
             //deletes them
             if(patch.length > 1){
@@ -36,6 +48,7 @@ const renderBoard = () => {
                     board[box.y][box.x].color = 'none'
                 })
             }
+            board = dropBoxes(patch,board)
 
             renderBoard()
         })
