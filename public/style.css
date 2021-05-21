@@ -7,3 +7,9 @@
 .row{
     display: flex;
 }
+
+h2{
+    font-family: sans-serif;
+    display: inline-block;
+    margin-right: 200px;
+}

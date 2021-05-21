@@ -8,7 +8,7 @@ type Box = {
 let rows = 9
 let col = 10
 
-const colors = ['red','green','blue','yellow','brown','pink','purple','orange']
+const colors = ['red','forestgreen','blue','yellow','brown','pink','purple','orange','aquamarine']
 //returns a random color
 const randomColor = () => {
     const index = Math.floor(Math.random()*colors.length)

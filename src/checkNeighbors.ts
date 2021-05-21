@@ -7,7 +7,6 @@ type Box = {
 
 let toDelete:Box[] = []
 let newDeleted:Box[] = []
-let boxesChecked = 0
 
 //checks if box is already beening deleted
 const checkIfAlreadyDeleted = (box:Box) => {
@@ -41,7 +40,6 @@ const checkNeighbors = (board:Box[][],box:Box) => {
         newDeleted.push(neighbor)
     }
 
-    boxesChecked++
     if(newDeleted.length > 0){
         const newDeletedCopy = [...newDeleted]
         newDeleted = []
