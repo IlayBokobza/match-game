@@ -65,9 +65,18 @@ const renderBoard = () => {
             }
             board = dropBoxes(patch,board)
 
+            console.clear()
+            console.log(board)
             renderBoard()
         })
     })
 }
+
+//refresh btn code
+document.querySelector('#refresh-btn')!.addEventListener('click',() => {
+    board = createBoard()
+    score = 0
+    renderBoard()
+})
 
 renderBoard()

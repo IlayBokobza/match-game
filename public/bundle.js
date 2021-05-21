@@ -1,36 +1,145 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ([
-/* 0 */
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _checkNeighbors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);\n/* harmony import */ var _createBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);\n/* harmony import */ var _dropBoxes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);\n\r\n\r\n\r\nlet board = (0,_createBoard__WEBPACK_IMPORTED_MODULE_1__.default)();\r\nconst renderBoard = () => {\r\n    document.getElementsByTagName('body')[0].innerHTML = '';\r\n    board.forEach(() => {\r\n        document.getElementsByTagName('body')[0].innerHTML += '<div class=\"row\"></div>';\r\n    });\r\n    const rows = document.querySelectorAll('.row');\r\n    board.forEach((arr, index) => {\r\n        arr.forEach(item => {\r\n            let element = `<div class=\"box\" id=\"${item.cords}\" style=\"background:${item.color};`;\r\n            if (item.color !== 'none') {\r\n                element += 'cursor: pointer;';\r\n            }\r\n            element += '\"></div>';\r\n            rows[index].innerHTML += element;\r\n        });\r\n    });\r\n    document.querySelectorAll('.box').forEach(box => {\r\n        box.addEventListener('click', (e) => {\r\n            var _a;\r\n            const splitId = (_a = e.target) === null || _a === void 0 ? void 0 : _a.id.split('|');\r\n            const y = parseInt(splitId[0]);\r\n            const x = parseInt(splitId[1]);\r\n            const thisBox = board[y][x];\r\n            //stop func if box is deleted\r\n            if (thisBox.color === 'none') {\r\n                return;\r\n            }\r\n            //checks neighbors\r\n            const patch = (0,_checkNeighbors__WEBPACK_IMPORTED_MODULE_0__.checkNeighbors)(board, thisBox);\r\n            (0,_checkNeighbors__WEBPACK_IMPORTED_MODULE_0__.resetNeighbors)();\r\n            //deletes them\r\n            if (patch.length > 1) {\r\n                patch.forEach(box => {\r\n                    board[box.y][box.x].color = 'none';\r\n                });\r\n            }\r\n            board = (0,_dropBoxes__WEBPACK_IMPORTED_MODULE_2__.default)(patch, board);\r\n            renderBoard();\r\n        });\r\n    });\r\n};\r\nrenderBoard();\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9tYXRjaC1nYW1lLy4vc3JjL2luZGV4LnRzP2ZmYjQiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQUE4RDtBQUN2QjtBQUNKO0FBRW5DLElBQUksS0FBSyxHQUFHLHFEQUFXLEVBQUU7QUFFekIsTUFBTSxXQUFXLEdBQUcsR0FBRyxFQUFFO0lBQ3JCLFFBQVEsQ0FBQyxvQkFBb0IsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxTQUFTLEdBQUcsRUFBRTtJQUV2RCxLQUFLLENBQUMsT0FBTyxDQUFDLEdBQUcsRUFBRTtRQUNmLFFBQVEsQ0FBQyxvQkFBb0IsQ0FBQyxNQUFNLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxTQUFTLElBQUkseUJBQXlCO0lBQ25GLENBQUMsQ0FBQztJQUVGLE1BQU0sSUFBSSxHQUFHLFFBQVEsQ0FBQyxnQkFBZ0IsQ0FBQyxNQUFNLENBQUM7SUFDOUMsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsRUFBQyxLQUFLLEVBQUUsRUFBRTtRQUN4QixHQUFHLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxFQUFFO1lBQ2YsSUFBSSxPQUFPLEdBQUcsd0JBQXdCLElBQUksQ0FBQyxLQUFLLHVCQUF1QixJQUFJLENBQUMsS0FBSyxHQUFHO1lBRXBGLElBQUcsSUFBSSxDQUFDLEtBQUssS0FBSyxNQUFNLEVBQUM7Z0JBQ3JCLE9BQU8sSUFBSSxrQkFBa0I7YUFDaEM7WUFFRCxPQUFPLElBQUksVUFBVTtZQUNyQixJQUFJLENBQUMsS0FBSyxDQUFDLENBQUMsU0FBUyxJQUFJLE9BQU87UUFDcEMsQ0FBQyxDQUFDO0lBQ04sQ0FBQyxDQUFDO0lBRUYsUUFBUSxDQUFDLGdCQUFnQixDQUFDLE1BQU0sQ0FBQyxDQUFDLE9BQU8sQ0FBQyxHQUFHLENBQUMsRUFBRTtRQUM1QyxHQUFHLENBQUMsZ0JBQWdCLENBQUMsT0FBTyxFQUFDLENBQUMsQ0FBSyxFQUFFLEVBQUU7O1lBQ25DLE1BQU0sT0FBTyxHQUFHLE9BQUMsQ0FBQyxNQUFNLDBDQUFFLEVBQUUsQ0FBQyxLQUFLLENBQUMsR0FBRyxDQUFDO1lBQ3ZDLE1BQU0sQ0FBQyxHQUFHLFFBQVEsQ0FBQyxPQUFPLENBQUMsQ0FBQyxDQUFDLENBQUM7WUFDOUIsTUFBTSxDQUFDLEdBQUcsUUFBUSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztZQUU5QixNQUFNLE9BQU8sR0FBRyxLQUFLLENBQUMsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO1lBRTNCLDZCQUE2QjtZQUM3QixJQUFHLE9BQU8sQ0FBQyxLQUFLLEtBQUssTUFBTSxFQUFDO2dCQUN4QixPQUFNO2FBQ1Q7WUFFRCxrQkFBa0I7WUFDbEIsTUFBTSxLQUFLLEdBQUcsK0RBQWMsQ0FBQyxLQUFLLEVBQUMsT0FBTyxDQUFDO1lBQzNDLCtEQUFjLEVBQUU7WUFFaEIsY0FBYztZQUNkLElBQUcsS0FBSyxDQUFDLE1BQU0sR0FBRyxDQUFDLEVBQUM7Z0JBQ2hCLEtBQUssQ0FBQyxPQUFPLENBQUMsR0FBRyxDQUFDLEVBQUU7b0JBQ2hCLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssR0FBRyxNQUFNO2dCQUN0QyxDQUFDLENBQUM7YUFDTDtZQUNELEtBQUssR0FBRyxtREFBUyxDQUFDLEtBQUssRUFBQyxLQUFLLENBQUM7WUFFOUIsV0FBVyxFQUFFO1FBQ2pCLENBQUMsQ0FBQztJQUNOLENBQUMsQ0FBQztBQUNOLENBQUM7QUFFRCxXQUFXLEVBQUUiLCJmaWxlIjoiMC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7Y2hlY2tOZWlnaGJvcnMscmVzZXROZWlnaGJvcnN9IGZyb20gJy4vY2hlY2tOZWlnaGJvcnMnXHJcbmltcG9ydCBjcmVhdGVCb2FyZCBmcm9tICcuL2NyZWF0ZUJvYXJkJ1xyXG5pbXBvcnQgZHJvcEJveGVzIGZyb20gJy4vZHJvcEJveGVzJ1xyXG5cclxubGV0IGJvYXJkID0gY3JlYXRlQm9hcmQoKVxyXG5cclxuY29uc3QgcmVuZGVyQm9hcmQgPSAoKSA9PiB7XHJcbiAgICBkb2N1bWVudC5nZXRFbGVtZW50c0J5VGFnTmFtZSgnYm9keScpWzBdLmlubmVySFRNTCA9ICcnXHJcblxyXG4gICAgYm9hcmQuZm9yRWFjaCgoKSA9PiB7XHJcbiAgICAgICAgZG9jdW1lbnQuZ2V0RWxlbWVudHNCeVRhZ05hbWUoJ2JvZHknKVswXS5pbm5lckhUTUwgKz0gJzxkaXYgY2xhc3M9XCJyb3dcIj48L2Rpdj4nXHJcbiAgICB9KVxyXG4gICAgXHJcbiAgICBjb25zdCByb3dzID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvckFsbCgnLnJvdycpXHJcbiAgICBib2FyZC5mb3JFYWNoKChhcnIsaW5kZXgpID0+IHtcclxuICAgICAgICBhcnIuZm9yRWFjaChpdGVtID0+IHtcclxuICAgICAgICAgICAgbGV0IGVsZW1lbnQgPSBgPGRpdiBjbGFzcz1cImJveFwiIGlkPVwiJHtpdGVtLmNvcmRzfVwiIHN0eWxlPVwiYmFja2dyb3VuZDoke2l0ZW0uY29sb3J9O2BcclxuXHJcbiAgICAgICAgICAgIGlmKGl0ZW0uY29sb3IgIT09ICdub25lJyl7XHJcbiAgICAgICAgICAgICAgICBlbGVtZW50ICs9ICdjdXJzb3I6IHBvaW50ZXI7J1xyXG4gICAgICAgICAgICB9XHJcblxyXG4gICAgICAgICAgICBlbGVtZW50ICs9ICdcIj48L2Rpdj4nXHJcbiAgICAgICAgICAgIHJvd3NbaW5kZXhdLmlubmVySFRNTCArPSBlbGVtZW50XHJcbiAgICAgICAgfSlcclxuICAgIH0pXHJcbiAgICBcclxuICAgIGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3JBbGwoJy5ib3gnKS5mb3JFYWNoKGJveCA9PiB7XHJcbiAgICAgICAgYm94LmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywoZTphbnkpID0+IHtcclxuICAgICAgICAgICAgY29uc3Qgc3BsaXRJZCA9IGUudGFyZ2V0Py5pZC5zcGxpdCgnfCcpXHJcbiAgICAgICAgICAgIGNvbnN0IHkgPSBwYXJzZUludChzcGxpdElkWzBdKVxyXG4gICAgICAgICAgICBjb25zdCB4ID0gcGFyc2VJbnQoc3BsaXRJZFsxXSlcclxuXHJcbiAgICAgICAgICAgIGNvbnN0IHRoaXNCb3ggPSBib2FyZFt5XVt4XVxyXG5cclxuICAgICAgICAgICAgLy9zdG9wIGZ1bmMgaWYgYm94IGlzIGRlbGV0ZWRcclxuICAgICAgICAgICAgaWYodGhpc0JveC5jb2xvciA9PT0gJ25vbmUnKXtcclxuICAgICAgICAgICAgICAgIHJldHVyblxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgICAvL2NoZWNrcyBuZWlnaGJvcnNcclxuICAgICAgICAgICAgY29uc3QgcGF0Y2ggPSBjaGVja05laWdoYm9ycyhib2FyZCx0aGlzQm94KVxyXG4gICAgICAgICAgICByZXNldE5laWdoYm9ycygpXHJcblxyXG4gICAgICAgICAgICAvL2RlbGV0ZXMgdGhlbVxyXG4gICAgICAgICAgICBpZihwYXRjaC5sZW5ndGggPiAxKXtcclxuICAgICAgICAgICAgICAgIHBhdGNoLmZvckVhY2goYm94ID0+IHtcclxuICAgICAgICAgICAgICAgICAgICBib2FyZFtib3gueV1bYm94LnhdLmNvbG9yID0gJ25vbmUnXHJcbiAgICAgICAgICAgICAgICB9KVxyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIGJvYXJkID0gZHJvcEJveGVzKHBhdGNoLGJvYXJkKVxyXG5cclxuICAgICAgICAgICAgcmVuZGVyQm9hcmQoKVxyXG4gICAgICAgIH0pXHJcbiAgICB9KVxyXG59XHJcblxyXG5yZW5kZXJCb2FyZCgpIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///0\n");
-
-/***/ }),
+/* 0 */,
 /* 1 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"checkNeighbors\": () => (/* binding */ checkNeighbors),\n/* harmony export */   \"resetNeighbors\": () => (/* binding */ resetNeighbors)\n/* harmony export */ });\nlet toDelete = [];\r\nlet newDeleted = [];\r\nlet boxesChecked = 0;\r\n//checks if box is already beening deleted\r\nconst checkIfAlreadyDeleted = (box) => {\r\n    const isInDeleted = toDelete.find(item => item === box);\r\n    return !!isInDeleted;\r\n};\r\nconst checkNeighbors = (board, box) => {\r\n    var _a, _b;\r\n    //checks neighbors  \r\n    if (board[box.y - 1] && ((_a = board[box.y - 1][box.x]) === null || _a === void 0 ? void 0 : _a.color) === box.color && !checkIfAlreadyDeleted(board[box.y - 1][box.x])) {\r\n        let neighbor = board[box.y - 1][box.x];\r\n        toDelete.push(neighbor);\r\n        newDeleted.push(neighbor);\r\n    }\r\n    if (board[box.y + 1] && ((_b = board[box.y + 1][box.x]) === null || _b === void 0 ? void 0 : _b.color) === box.color && !checkIfAlreadyDeleted(board[box.y + 1][box.x])) {\r\n        let neighbor = board[box.y + 1][box.x];\r\n        toDelete.push(neighbor);\r\n        newDeleted.push(neighbor);\r\n    }\r\n    let neighbor = board[box.y][box.x + 1];\r\n    if (neighbor && neighbor.color === box.color && !checkIfAlreadyDeleted(neighbor)) {\r\n        toDelete.push(neighbor);\r\n        newDeleted.push(neighbor);\r\n    }\r\n    neighbor = board[box.y][box.x - 1];\r\n    if (neighbor && neighbor.color === box.color && !checkIfAlreadyDeleted(neighbor)) {\r\n        toDelete.push(neighbor);\r\n        newDeleted.push(neighbor);\r\n    }\r\n    boxesChecked++;\r\n    if (newDeleted.length > 0) {\r\n        const newDeletedCopy = [...newDeleted];\r\n        newDeleted = [];\r\n        newDeletedCopy.forEach(box => {\r\n            checkNeighbors(board, box);\r\n        });\r\n        return toDelete;\r\n    }\r\n    else {\r\n        newDeleted = [];\r\n        return toDelete;\r\n    }\r\n};\r\nconst resetNeighbors = () => {\r\n    toDelete = [];\r\n};\r\n\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9tYXRjaC1nYW1lLy4vc3JjL2NoZWNrTmVpZ2hib3JzLnRzP2Q3OGUiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7QUFPQSxJQUFJLFFBQVEsR0FBUyxFQUFFO0FBQ3ZCLElBQUksVUFBVSxHQUFTLEVBQUU7QUFDekIsSUFBSSxZQUFZLEdBQUcsQ0FBQztBQUVwQiwwQ0FBMEM7QUFDMUMsTUFBTSxxQkFBcUIsR0FBRyxDQUFDLEdBQU8sRUFBRSxFQUFFO0lBQ3RDLE1BQU0sV0FBVyxHQUFHLFFBQVEsQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLEVBQUUsQ0FBQyxJQUFJLEtBQUssR0FBRyxDQUFDO0lBQ3ZELE9BQU8sQ0FBQyxDQUFDLFdBQVc7QUFDeEIsQ0FBQztBQUVELE1BQU0sY0FBYyxHQUFHLENBQUMsS0FBYSxFQUFDLEdBQU8sRUFBRSxFQUFFOztJQUM3QyxvQkFBb0I7SUFDcEIsSUFBRyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsR0FBQyxDQUFDLENBQUMsSUFBSSxZQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsR0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLDBDQUFFLEtBQUssTUFBSyxHQUFHLENBQUMsS0FBSyxJQUFJLENBQUMscUJBQXFCLENBQUMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEVBQUM7UUFDN0csSUFBSSxRQUFRLEdBQUcsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQztRQUNwQyxRQUFRLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQztRQUN2QixVQUFVLENBQUMsSUFBSSxDQUFDLFFBQVEsQ0FBQztLQUM1QjtJQUVELElBQUcsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLElBQUksWUFBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQywwQ0FBRSxLQUFLLE1BQUssR0FBRyxDQUFDLEtBQUssSUFBSSxDQUFDLHFCQUFxQixDQUFDLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxHQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsQ0FBQyxFQUFDO1FBQzdHLElBQUksUUFBUSxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxHQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUM7UUFDcEMsUUFBUSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7UUFDdkIsVUFBVSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7S0FDNUI7SUFFRCxJQUFJLFFBQVEsR0FBRyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDO0lBQ3BDLElBQUcsUUFBUSxJQUFJLFFBQVEsQ0FBQyxLQUFLLEtBQUssR0FBRyxDQUFDLEtBQUssSUFBSSxDQUFDLHFCQUFxQixDQUFDLFFBQVEsQ0FBQyxFQUFDO1FBQzVFLFFBQVEsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDO1FBQ3ZCLFVBQVUsQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDO0tBQzVCO0lBRUQsUUFBUSxHQUFHLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsR0FBQyxDQUFDLENBQUM7SUFDaEMsSUFBRyxRQUFRLElBQUksUUFBUSxDQUFDLEtBQUssS0FBSyxHQUFHLENBQUMsS0FBSyxJQUFJLENBQUMscUJBQXFCLENBQUMsUUFBUSxDQUFDLEVBQUM7UUFDNUUsUUFBUSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7UUFDdkIsVUFBVSxDQUFDLElBQUksQ0FBQyxRQUFRLENBQUM7S0FDNUI7SUFFRCxZQUFZLEVBQUU7SUFDZCxJQUFHLFVBQVUsQ0FBQyxNQUFNLEdBQUcsQ0FBQyxFQUFDO1FBQ3JCLE1BQU0sY0FBYyxHQUFHLENBQUMsR0FBRyxVQUFVLENBQUM7UUFDdEMsVUFBVSxHQUFHLEVBQUU7UUFDZixjQUFjLENBQUMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxFQUFFO1lBQ3pCLGNBQWMsQ0FBQyxLQUFLLEVBQUMsR0FBRyxDQUFDO1FBQzdCLENBQUMsQ0FBQztRQUNGLE9BQU8sUUFBUTtLQUNsQjtTQUFJO1FBQ0QsVUFBVSxHQUFHLEVBQUU7UUFDZixPQUFPLFFBQVE7S0FDbEI7QUFFTCxDQUFDO0FBRUQsTUFBTSxjQUFjLEdBQUcsR0FBRyxFQUFFO0lBQ3hCLFFBQVEsR0FBRyxFQUFFO0FBQ2pCLENBQUM7QUFFcUMiLCJmaWxlIjoiMS5qcyIsInNvdXJjZXNDb250ZW50IjpbInR5cGUgQm94ID0ge1xyXG4gICAgeDpudW1iZXIsXHJcbiAgICB5Om51bWJlcixcclxuICAgIGNvcmRzOnN0cmluZyxcclxuICAgIGNvbG9yOnN0cmluZyxcclxufVxyXG5cclxubGV0IHRvRGVsZXRlOkJveFtdID0gW11cclxubGV0IG5ld0RlbGV0ZWQ6Qm94W10gPSBbXVxyXG5sZXQgYm94ZXNDaGVja2VkID0gMFxyXG5cclxuLy9jaGVja3MgaWYgYm94IGlzIGFscmVhZHkgYmVlbmluZyBkZWxldGVkXHJcbmNvbnN0IGNoZWNrSWZBbHJlYWR5RGVsZXRlZCA9IChib3g6Qm94KSA9PiB7XHJcbiAgICBjb25zdCBpc0luRGVsZXRlZCA9IHRvRGVsZXRlLmZpbmQoaXRlbSA9PiBpdGVtID09PSBib3gpXHJcbiAgICByZXR1cm4gISFpc0luRGVsZXRlZFxyXG59XHJcblxyXG5jb25zdCBjaGVja05laWdoYm9ycyA9IChib2FyZDpCb3hbXVtdLGJveDpCb3gpID0+IHtcclxuICAgIC8vY2hlY2tzIG5laWdoYm9ycyAgXHJcbiAgICBpZihib2FyZFtib3gueS0xXSAmJiBib2FyZFtib3gueS0xXVtib3gueF0/LmNvbG9yID09PSBib3guY29sb3IgJiYgIWNoZWNrSWZBbHJlYWR5RGVsZXRlZChib2FyZFtib3gueS0xXVtib3gueF0pKXtcclxuICAgICAgICBsZXQgbmVpZ2hib3IgPSBib2FyZFtib3gueS0xXVtib3gueF1cclxuICAgICAgICB0b0RlbGV0ZS5wdXNoKG5laWdoYm9yKVxyXG4gICAgICAgIG5ld0RlbGV0ZWQucHVzaChuZWlnaGJvcilcclxuICAgIH1cclxuICAgIFxyXG4gICAgaWYoYm9hcmRbYm94LnkrMV0gJiYgYm9hcmRbYm94LnkrMV1bYm94LnhdPy5jb2xvciA9PT0gYm94LmNvbG9yICYmICFjaGVja0lmQWxyZWFkeURlbGV0ZWQoYm9hcmRbYm94LnkrMV1bYm94LnhdKSl7XHJcbiAgICAgICAgbGV0IG5laWdoYm9yID0gYm9hcmRbYm94LnkrMV1bYm94LnhdXHJcbiAgICAgICAgdG9EZWxldGUucHVzaChuZWlnaGJvcilcclxuICAgICAgICBuZXdEZWxldGVkLnB1c2gobmVpZ2hib3IpXHJcbiAgICB9XHJcbiAgICBcclxuICAgIGxldCBuZWlnaGJvciA9IGJvYXJkW2JveC55XVtib3gueCsxXVxyXG4gICAgaWYobmVpZ2hib3IgJiYgbmVpZ2hib3IuY29sb3IgPT09IGJveC5jb2xvciAmJiAhY2hlY2tJZkFscmVhZHlEZWxldGVkKG5laWdoYm9yKSl7XHJcbiAgICAgICAgdG9EZWxldGUucHVzaChuZWlnaGJvcilcclxuICAgICAgICBuZXdEZWxldGVkLnB1c2gobmVpZ2hib3IpXHJcbiAgICB9XHJcbiAgICBcclxuICAgIG5laWdoYm9yID0gYm9hcmRbYm94LnldW2JveC54LTFdXHJcbiAgICBpZihuZWlnaGJvciAmJiBuZWlnaGJvci5jb2xvciA9PT0gYm94LmNvbG9yICYmICFjaGVja0lmQWxyZWFkeURlbGV0ZWQobmVpZ2hib3IpKXtcclxuICAgICAgICB0b0RlbGV0ZS5wdXNoKG5laWdoYm9yKVxyXG4gICAgICAgIG5ld0RlbGV0ZWQucHVzaChuZWlnaGJvcilcclxuICAgIH1cclxuXHJcbiAgICBib3hlc0NoZWNrZWQrK1xyXG4gICAgaWYobmV3RGVsZXRlZC5sZW5ndGggPiAwKXtcclxuICAgICAgICBjb25zdCBuZXdEZWxldGVkQ29weSA9IFsuLi5uZXdEZWxldGVkXVxyXG4gICAgICAgIG5ld0RlbGV0ZWQgPSBbXVxyXG4gICAgICAgIG5ld0RlbGV0ZWRDb3B5LmZvckVhY2goYm94ID0+IHtcclxuICAgICAgICAgICAgY2hlY2tOZWlnaGJvcnMoYm9hcmQsYm94KVxyXG4gICAgICAgIH0pXHJcbiAgICAgICAgcmV0dXJuIHRvRGVsZXRlXHJcbiAgICB9ZWxzZXtcclxuICAgICAgICBuZXdEZWxldGVkID0gW11cclxuICAgICAgICByZXR1cm4gdG9EZWxldGVcclxuICAgIH1cclxuICAgIFxyXG59XHJcblxyXG5jb25zdCByZXNldE5laWdoYm9ycyA9ICgpID0+IHtcclxuICAgIHRvRGVsZXRlID0gW11cclxufVxyXG5cclxuZXhwb3J0IHtjaGVja05laWdoYm9ycyxyZXNldE5laWdoYm9yc30iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///1\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "checkNeighbors": () => (/* binding */ checkNeighbors),
+/* harmony export */   "resetNeighbors": () => (/* binding */ resetNeighbors)
+/* harmony export */ });
+let toDelete = [];
+let newDeleted = [];
+//checks if box is already beening deleted
+const checkIfAlreadyDeleted = (box) => {
+    const isInDeleted = toDelete.find(item => item === box);
+    return !!isInDeleted;
+};
+const checkNeighbors = (board, box) => {
+    var _a, _b;
+    //checks neighbors  
+    if (board[box.y - 1] && ((_a = board[box.y - 1][box.x]) === null || _a === void 0 ? void 0 : _a.color) === box.color && !checkIfAlreadyDeleted(board[box.y - 1][box.x])) {
+        let neighbor = board[box.y - 1][box.x];
+        toDelete.push(neighbor);
+        newDeleted.push(neighbor);
+    }
+    if (board[box.y + 1] && ((_b = board[box.y + 1][box.x]) === null || _b === void 0 ? void 0 : _b.color) === box.color && !checkIfAlreadyDeleted(board[box.y + 1][box.x])) {
+        let neighbor = board[box.y + 1][box.x];
+        toDelete.push(neighbor);
+        newDeleted.push(neighbor);
+    }
+    let neighbor = board[box.y][box.x + 1];
+    if (neighbor && neighbor.color === box.color && !checkIfAlreadyDeleted(neighbor)) {
+        toDelete.push(neighbor);
+        newDeleted.push(neighbor);
+    }
+    neighbor = board[box.y][box.x - 1];
+    if (neighbor && neighbor.color === box.color && !checkIfAlreadyDeleted(neighbor)) {
+        toDelete.push(neighbor);
+        newDeleted.push(neighbor);
+    }
+    if (newDeleted.length > 0) {
+        const newDeletedCopy = [...newDeleted];
+        newDeleted = [];
+        newDeletedCopy.forEach(box => {
+            checkNeighbors(board, box);
+        });
+        return toDelete;
+    }
+    else {
+        newDeleted = [];
+        return toDelete;
+    }
+};
+const resetNeighbors = () => {
+    toDelete = [];
+};
+
+
 
 /***/ }),
 /* 2 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nlet rows = 9;\r\nlet col = 10;\r\nconst colors = ['red', 'green', 'blue', 'yellow', 'brown', 'pink', 'purple', 'orange'];\r\n//returns a random color\r\nconst randomColor = () => {\r\n    const index = Math.floor(Math.random() * colors.length);\r\n    return colors[index];\r\n};\r\nconst createBoard = () => {\r\n    const board = [];\r\n    //add rows\r\n    for (let i = 0; i < rows; i++) {\r\n        board.push([]);\r\n    }\r\n    board.forEach((arr, y) => {\r\n        //add cols\r\n        for (let x = 0; x < col; x++) {\r\n            arr.push({\r\n                x,\r\n                y,\r\n                cords: `${y}|${x}`,\r\n                color: randomColor()\r\n            });\r\n        }\r\n    });\r\n    return board;\r\n};\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createBoard);\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9tYXRjaC1nYW1lLy4vc3JjL2NyZWF0ZUJvYXJkLnRzPzE5OGEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7OztBQU9BLElBQUksSUFBSSxHQUFHLENBQUM7QUFDWixJQUFJLEdBQUcsR0FBRyxFQUFFO0FBRVosTUFBTSxNQUFNLEdBQUcsQ0FBQyxLQUFLLEVBQUMsT0FBTyxFQUFDLE1BQU0sRUFBQyxRQUFRLEVBQUMsT0FBTyxFQUFDLE1BQU0sRUFBQyxRQUFRLEVBQUMsUUFBUSxDQUFDO0FBQy9FLHdCQUF3QjtBQUN4QixNQUFNLFdBQVcsR0FBRyxHQUFHLEVBQUU7SUFDckIsTUFBTSxLQUFLLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxJQUFJLENBQUMsTUFBTSxFQUFFLEdBQUMsTUFBTSxDQUFDLE1BQU0sQ0FBQztJQUNyRCxPQUFPLE1BQU0sQ0FBQyxLQUFLLENBQUM7QUFDeEIsQ0FBQztBQUVELE1BQU0sV0FBVyxHQUFHLEdBQUcsRUFBRTtJQUNyQixNQUFNLEtBQUssR0FBVyxFQUFFO0lBRXhCLFVBQVU7SUFDVixLQUFJLElBQUksQ0FBQyxHQUFHLENBQUMsRUFBQyxDQUFDLEdBQUcsSUFBSSxFQUFDLENBQUMsRUFBRSxFQUFDO1FBQ3ZCLEtBQUssQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFDO0tBQ2pCO0lBRUQsS0FBSyxDQUFDLE9BQU8sQ0FBQyxDQUFDLEdBQUcsRUFBQyxDQUFDLEVBQUUsRUFBRTtRQUNwQixVQUFVO1FBQ1YsS0FBSSxJQUFJLENBQUMsR0FBRyxDQUFDLEVBQUMsQ0FBQyxHQUFHLEdBQUcsRUFBQyxDQUFDLEVBQUUsRUFBQztZQUN0QixHQUFHLENBQUMsSUFBSSxDQUFDO2dCQUNMLENBQUM7Z0JBQ0QsQ0FBQztnQkFDRCxLQUFLLEVBQUMsR0FBRyxDQUFDLElBQUksQ0FBQyxFQUFFO2dCQUNqQixLQUFLLEVBQUMsV0FBVyxFQUFFO2FBQ3RCLENBQUM7U0FDTDtJQUNMLENBQUMsQ0FBQztJQUVGLE9BQU8sS0FBSztBQUNoQixDQUFDO0FBRUQsaUVBQWUsV0FBVyIsImZpbGUiOiIyLmpzIiwic291cmNlc0NvbnRlbnQiOlsidHlwZSBCb3ggPSB7XHJcbiAgICB4Om51bWJlcixcclxuICAgIHk6bnVtYmVyLFxyXG4gICAgY29yZHM6c3RyaW5nLFxyXG4gICAgY29sb3I6c3RyaW5nLFxyXG59XHJcblxyXG5sZXQgcm93cyA9IDlcclxubGV0IGNvbCA9IDEwXHJcblxyXG5jb25zdCBjb2xvcnMgPSBbJ3JlZCcsJ2dyZWVuJywnYmx1ZScsJ3llbGxvdycsJ2Jyb3duJywncGluaycsJ3B1cnBsZScsJ29yYW5nZSddXHJcbi8vcmV0dXJucyBhIHJhbmRvbSBjb2xvclxyXG5jb25zdCByYW5kb21Db2xvciA9ICgpID0+IHtcclxuICAgIGNvbnN0IGluZGV4ID0gTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpKmNvbG9ycy5sZW5ndGgpXHJcbiAgICByZXR1cm4gY29sb3JzW2luZGV4XVxyXG59XHJcblxyXG5jb25zdCBjcmVhdGVCb2FyZCA9ICgpID0+IHtcclxuICAgIGNvbnN0IGJvYXJkOkJveFtdW10gPSBbXVxyXG5cclxuICAgIC8vYWRkIHJvd3NcclxuICAgIGZvcihsZXQgaSA9IDA7aSA8IHJvd3M7aSsrKXtcclxuICAgICAgICBib2FyZC5wdXNoKFtdKVxyXG4gICAgfVxyXG4gICAgXHJcbiAgICBib2FyZC5mb3JFYWNoKChhcnIseSkgPT4ge1xyXG4gICAgICAgIC8vYWRkIGNvbHNcclxuICAgICAgICBmb3IobGV0IHggPSAwO3ggPCBjb2w7eCsrKXtcclxuICAgICAgICAgICAgYXJyLnB1c2goe1xyXG4gICAgICAgICAgICAgICAgeCxcclxuICAgICAgICAgICAgICAgIHksXHJcbiAgICAgICAgICAgICAgICBjb3JkczpgJHt5fXwke3h9YCxcclxuICAgICAgICAgICAgICAgIGNvbG9yOnJhbmRvbUNvbG9yKClcclxuICAgICAgICAgICAgfSlcclxuICAgICAgICB9XHJcbiAgICB9KVxyXG5cclxuICAgIHJldHVybiBib2FyZFxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBjcmVhdGVCb2FyZCJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///2\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+let rows = 9;
+let col = 10;
+const colors = ['red', 'forestgreen', 'blue', 'brown', 'orange'];
+//returns a random color
+const randomColor = () => {
+    const index = Math.floor(Math.random() * colors.length);
+    return colors[index];
+};
+const createBoard = () => {
+    const board = [];
+    //add rows
+    for (let i = 0; i < rows; i++) {
+        board.push([]);
+    }
+    board.forEach((arr, y) => {
+        //add cols
+        for (let x = 0; x < col; x++) {
+            arr.push({
+                x,
+                y,
+                cords: `${y}|${x}`,
+                color: randomColor()
+            });
+        }
+    });
+    return board;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (createBoard);
+
 
 /***/ }),
 /* 3 */
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst dropBoxes = (deletedBoxes, board) => {\r\n    if (deletedBoxes.length === 0) {\r\n        return board;\r\n    }\r\n    let dropedBoxes = [];\r\n    //sorts boxses by y axis\r\n    deletedBoxes = deletedBoxes.sort((a, b) => {\r\n        if (a.y > b.y) {\r\n            return 1;\r\n        }\r\n        if (a.y < b.y) {\r\n            return -1;\r\n        }\r\n        return 0;\r\n    });\r\n    deletedBoxes.forEach(box => {\r\n        //check if is at the top\r\n        if (box.y === 0) {\r\n            return;\r\n        }\r\n        //checks if the box above is none\r\n        if (board[box.y - 1][box.x].color === 'none') {\r\n            return;\r\n        }\r\n        //changes the color of this box\r\n        board[box.y][box.x].color = board[box.y - 1][box.x].color;\r\n        //changes the color of the box above\r\n        board[box.y - 1][box.x].color = 'none';\r\n        dropedBoxes.push(board[box.y - 1][box.x]);\r\n    });\r\n    board = dropBoxes(dropedBoxes, board);\r\n    return board;\r\n};\r\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dropBoxes);\r\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly9tYXRjaC1nYW1lLy4vc3JjL2Ryb3BCb3hlcy50cz8yYzk3Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7QUFRQSxNQUFNLFNBQVMsR0FBRyxDQUFDLFlBQWtCLEVBQUMsS0FBYSxFQUFFLEVBQUU7SUFDbkQsSUFBRyxZQUFZLENBQUMsTUFBTSxLQUFLLENBQUMsRUFBQztRQUN6QixPQUFPLEtBQUs7S0FDZjtJQUVELElBQUksV0FBVyxHQUFTLEVBQUU7SUFDMUIsd0JBQXdCO0lBQ3hCLFlBQVksR0FBRyxZQUFZLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQyxFQUFDLENBQUMsRUFBRSxFQUFFO1FBQ3JDLElBQUcsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxFQUFDO1lBQ1QsT0FBTyxDQUFDO1NBQ1g7UUFDRCxJQUFHLENBQUMsQ0FBQyxDQUFDLEdBQUcsQ0FBQyxDQUFDLENBQUMsRUFBQztZQUNULE9BQU8sQ0FBQyxDQUFDO1NBQ1o7UUFFRCxPQUFPLENBQUM7SUFDWixDQUFDLENBQUM7SUFFRixZQUFZLENBQUMsT0FBTyxDQUFDLEdBQUcsQ0FBQyxFQUFFO1FBQ3ZCLHdCQUF3QjtRQUN4QixJQUFHLEdBQUcsQ0FBQyxDQUFDLEtBQUssQ0FBQyxFQUFDO1lBQ1gsT0FBTTtTQUNUO1FBRUQsaUNBQWlDO1FBQ2pDLElBQUcsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssS0FBSyxNQUFNLEVBQUM7WUFDdEMsT0FBTTtTQUNUO1FBRUQsK0JBQStCO1FBQy9CLEtBQUssQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUMsR0FBRyxDQUFDLENBQUMsR0FBQyxDQUFDLENBQUMsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLENBQUMsS0FBSztRQUN2RCxvQ0FBb0M7UUFDcEMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDLEtBQUssR0FBRyxNQUFNO1FBQ3BDLFdBQVcsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLEdBQUcsQ0FBQyxDQUFDLEdBQUMsQ0FBQyxDQUFDLENBQUMsR0FBRyxDQUFDLENBQUMsQ0FBQyxDQUFDO0lBQzNDLENBQUMsQ0FBQztJQUVGLEtBQUssR0FBRyxTQUFTLENBQUMsV0FBVyxFQUFDLEtBQUssQ0FBQztJQUNwQyxPQUFPLEtBQUs7QUFDaEIsQ0FBQztBQUVELGlFQUFlLFNBQVMiLCJmaWxlIjoiMy5qcyIsInNvdXJjZXNDb250ZW50IjpbInR5cGUgQm94ID0ge1xyXG4gICAgeDpudW1iZXIsXHJcbiAgICB5Om51bWJlcixcclxuICAgIGNvcmRzOnN0cmluZyxcclxuICAgIGNvbG9yOnN0cmluZyxcclxufVxyXG5cclxuXHJcbmNvbnN0IGRyb3BCb3hlcyA9IChkZWxldGVkQm94ZXM6Qm94W10sYm9hcmQ6Qm94W11bXSkgPT4ge1xyXG4gICAgaWYoZGVsZXRlZEJveGVzLmxlbmd0aCA9PT0gMCl7XHJcbiAgICAgICAgcmV0dXJuIGJvYXJkXHJcbiAgICB9XHJcblxyXG4gICAgbGV0IGRyb3BlZEJveGVzOkJveFtdID0gW11cclxuICAgIC8vc29ydHMgYm94c2VzIGJ5IHkgYXhpc1xyXG4gICAgZGVsZXRlZEJveGVzID0gZGVsZXRlZEJveGVzLnNvcnQoKGEsYikgPT4ge1xyXG4gICAgICAgIGlmKGEueSA+IGIueSl7XHJcbiAgICAgICAgICAgIHJldHVybiAxXHJcbiAgICAgICAgfVxyXG4gICAgICAgIGlmKGEueSA8IGIueSl7XHJcbiAgICAgICAgICAgIHJldHVybiAtMVxyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgcmV0dXJuIDBcclxuICAgIH0pXHJcblxyXG4gICAgZGVsZXRlZEJveGVzLmZvckVhY2goYm94ID0+IHtcclxuICAgICAgICAvL2NoZWNrIGlmIGlzIGF0IHRoZSB0b3BcclxuICAgICAgICBpZihib3gueSA9PT0gMCl7XHJcbiAgICAgICAgICAgIHJldHVyblxyXG4gICAgICAgIH1cclxuXHJcbiAgICAgICAgLy9jaGVja3MgaWYgdGhlIGJveCBhYm92ZSBpcyBub25lXHJcbiAgICAgICAgaWYoYm9hcmRbYm94LnktMV1bYm94LnhdLmNvbG9yID09PSAnbm9uZScpe1xyXG4gICAgICAgICAgICByZXR1cm5cclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIC8vY2hhbmdlcyB0aGUgY29sb3Igb2YgdGhpcyBib3hcclxuICAgICAgICBib2FyZFtib3gueV1bYm94LnhdLmNvbG9yID0gYm9hcmRbYm94LnktMV1bYm94LnhdLmNvbG9yXHJcbiAgICAgICAgLy9jaGFuZ2VzIHRoZSBjb2xvciBvZiB0aGUgYm94IGFib3ZlXHJcbiAgICAgICAgYm9hcmRbYm94LnktMV1bYm94LnhdLmNvbG9yID0gJ25vbmUnXHJcbiAgICAgICAgZHJvcGVkQm94ZXMucHVzaChib2FyZFtib3gueS0xXVtib3gueF0pXHJcbiAgICB9KVxyXG4gICAgXHJcbiAgICBib2FyZCA9IGRyb3BCb3hlcyhkcm9wZWRCb3hlcyxib2FyZClcclxuICAgIHJldHVybiBib2FyZFxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBkcm9wQm94ZXMiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///3\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+const dropBoxes = (deletedBoxes, board) => {
+    if (deletedBoxes.length === 0) {
+        return board;
+    }
+    let dropedBoxes = [];
+    //sorts boxses by y axis
+    deletedBoxes = deletedBoxes.sort((a, b) => {
+        if (a.y > b.y) {
+            return 1;
+        }
+        if (a.y < b.y) {
+            return -1;
+        }
+        return 0;
+    });
+    deletedBoxes.forEach(box => {
+        //check if is at the top
+        if (box.y === 0) {
+            return;
+        }
+        //checks if the box above is none
+        if (board[box.y - 1][box.x].color === 'none') {
+            return;
+        }
+        //changes the color of this box
+        board[box.y][box.x].color = board[box.y - 1][box.x].color;
+        //changes the color of the box above
+        board[box.y - 1][box.x].color = 'none';
+        dropedBoxes.push(board[box.y - 1][box.x]);
+    });
+    board = dropBoxes(dropedBoxes, board);
+    return board;
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dropBoxes);
+
 
 /***/ })
 /******/ 	]);
@@ -89,11 +198,84 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__(0);
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _checkNeighbors__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _createBoard__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var _dropBoxes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
+
+
+
+let board = (0,_createBoard__WEBPACK_IMPORTED_MODULE_1__.default)();
+let score = 0;
+const renderBoard = () => {
+    //resets container
+    document.querySelector('#box-container').innerHTML = '';
+    board.forEach(() => {
+        document.querySelector('#box-container').innerHTML += '<div class="row"></div>';
+    });
+    //adds boxes
+    const rows = document.querySelectorAll('.row');
+    board.forEach((arr, index) => {
+        arr.forEach(item => {
+            let element = `<div class="box" id="${item.cords}" style="background:${item.color};`;
+            if (item.color !== 'none') {
+                element += 'cursor: pointer;';
+            }
+            element += '"></div>';
+            rows[index].innerHTML += element;
+        });
+    });
+    //updates score
+    document.querySelector('#score').textContent = score.toString();
+    if (!localStorage.getItem('best-score')) {
+        localStorage.setItem('best-score', '0');
+    }
+    document.querySelector('#best-score').textContent = localStorage.getItem('best-score');
+    document.querySelectorAll('.box').forEach(box => {
+        box.addEventListener('click', (e) => {
+            var _a;
+            const splitId = (_a = e.target) === null || _a === void 0 ? void 0 : _a.id.split('|');
+            const y = parseInt(splitId[0]);
+            const x = parseInt(splitId[1]);
+            const thisBox = board[y][x];
+            //stop func if box is deleted
+            if (thisBox.color === 'none') {
+                return;
+            }
+            //checks neighbors
+            const patch = (0,_checkNeighbors__WEBPACK_IMPORTED_MODULE_0__.checkNeighbors)(board, thisBox);
+            (0,_checkNeighbors__WEBPACK_IMPORTED_MODULE_0__.resetNeighbors)();
+            //deletes them
+            if (patch.length > 1) {
+                patch.forEach(box => {
+                    board[box.y][box.x].color = 'none';
+                });
+                //updates score
+                score += patch.length;
+                if (parseInt(localStorage.getItem('best-score')) < score) {
+                    localStorage.setItem('best-score', score.toString());
+                }
+            }
+            else {
+                return;
+            }
+            board = (0,_dropBoxes__WEBPACK_IMPORTED_MODULE_2__.default)(patch, board);
+            renderBoard();
+        });
+    });
+};
+//refresh btn code
+document.querySelector('#refresh-btn').addEventListener('click', () => {
+    board = (0,_createBoard__WEBPACK_IMPORTED_MODULE_1__.default)();
+    renderBoard();
+});
+renderBoard();
+
+})();
+
 /******/ })()
 ;
+//# sourceMappingURL=bundle.js.map
