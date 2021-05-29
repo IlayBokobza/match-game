@@ -1,5 +1,4 @@
 import {checkNeighbors,resetNeighbors} from './checkNeighbors'
-import createBoard from './createBoard'
 import dropBoxes from './dropBoxes'
 import io from 'socket.io-client'
 const socket = io() 
@@ -87,15 +86,14 @@ const renderBoard = () => {
 
 //refresh btn code
 document.querySelector('#refresh-btn')!.addEventListener('click',() => {
-    board = createBoard()
-    score = 0
-    renderBoard()
+    socket.emit("refreshBoard")
 })
 
 //socket event handeler
 socket.on('sendBoard',(data:string) => {
-    console.log(data)
+    console.log('new board from server')
     board = JSON.parse(data)
+    score = 0
     renderBoard()
 })
 // socket.emit('sendBoard',JSON.stringify(board))
