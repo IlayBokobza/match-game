@@ -1,8 +1,19 @@
 import {checkNeighbors,resetNeighbors} from './checkNeighbors'
 import createBoard from './createBoard'
 import dropBoxes from './dropBoxes'
+import io from 'socket.io-client'
+const socket = io() 
 
-let board = createBoard()
+type Box = {
+    x:number,
+    y:number,
+    cords:string,
+    color:string,
+}
+
+
+// let board = createBoard()
+let board:Box[][] = []
 let score = 0
 
 const renderBoard = () => {
@@ -64,6 +75,8 @@ const renderBoard = () => {
                 return
             }
             board = dropBoxes(patch,board)
+            //sends board to server
+            socket.emit('sendBoard',JSON.stringify(board))
 
             console.clear()
             console.log(board)
@@ -78,5 +91,13 @@ document.querySelector('#refresh-btn')!.addEventListener('click',() => {
     score = 0
     renderBoard()
 })
+
+//socket event handeler
+socket.on('sendBoard',(data:string) => {
+    console.log(data)
+    board = JSON.parse(data)
+    renderBoard()
+})
+// socket.emit('sendBoard',JSON.stringify(board))
 
 renderBoard()

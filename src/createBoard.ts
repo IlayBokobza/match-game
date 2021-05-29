@@ -5,8 +5,8 @@ type Box = {
     color:string,
 }
 
-let rows = 9
-let col = 16
+let rows = 6
+let col = 12
 
 const colors = ['red','forestgreen','blue','brown','orange']
 //returns a random color

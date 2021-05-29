@@ -20,5 +20,10 @@ module.exports = {
   resolve:{
     extensions:['.js','.ts']
   },
-  mode:'none'
+  mode:'none',
+  devServer:{
+    proxy:{
+      '/socket.io':'http://localhost:8001'
+    }
+  },
 };
