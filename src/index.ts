@@ -96,6 +96,5 @@ socket.on('sendBoard',(data:string) => {
     score = 0
     renderBoard()
 })
-// socket.emit('sendBoard',JSON.stringify(board))
 
 renderBoard()
