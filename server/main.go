@@ -26,9 +26,8 @@ func main() {
 		s.SetContext("")
 		s.Join("all")
 		fmt.Println("connected:", s.ID())
-		if len(board) > 0 {
-			server.BroadcastToRoom("/", s.ID(), "sendBoard", board)
-		}
+		server.BroadcastToRoom("/", s.ID(), "sendBoard", board)
+
 		return nil
 	})
 
@@ -43,11 +42,11 @@ func main() {
 
 	//regenerates  the board
 	server.OnEvent("/", "refreshBoard", func(s socketio.Conn) {
-		fmt.Println("refreshes board")
 		boardBytes, err := json.Marshal(generateBoard())
 		errorHandler(err)
 		board = string(boardBytes)
 		server.BroadcastToNamespace("/", "sendBoard", board)
+		fmt.Println("refreshes board")
 	})
 
 	server.OnError("/", func(s socketio.Conn, e error) {
